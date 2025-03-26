@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% if tercero %}Editar{% else %}Nuevo{% endif %} Tercero</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>{% if tercero %}Editar{% else %}Nuevo{% endif %} Tercero</h1>
+        
+        <form action="/save" method="post">
+            <input type="hidden" name="id" value="{{ tercero[0] if tercero else '' }}">
+            
+            <div class="form-group">
+                <label>Tipo Documento:</label>
+                <select name="tipo_doc" required>
+                    <option value="CC" {% if tercero and tercero[1] == 'CC' %}selected{% endif %}>Cédula</option>
+                    <option value="TI" {% if tercero and tercero[1] == 'TI' %}selected{% endif %}>Tarjeta Identidad</option>
+                    <option value="NIT" {% if tercero and tercero[1] == 'NIT' %}selected{% endif %}>NIT</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Número Documento:</label>
+                <input type="text" name="nro_doc" value="{{ tercero[2] if tercero else '' }}" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Nombres:</label>
+                <input type="text" name="nombres" value="{{ tercero[3] if tercero else '' }}" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Apellidos:</label>
+                <input type="text" name="apellidos" value="{{ tercero[4] if tercero else '' }}" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Fecha Nacimiento:</label>
+                <input type="date" name="fecha_nac" value="{{ tercero[5] if tercero else '' }}">
+            </div>
+            
+            <div class="form-group">
+                <label>Teléfono:</label>
+                <input type="text" name="tel" value="{{ tercero[6] if tercero else '' }}">
+            </div>
+            
+            <div class="form-group">
+                <label>Correo:</label>
+                <input type="email" name="correo" value="{{ tercero[7] if tercero else '' }}">
+            </div>
+            
+            <div class="form-group">
+                <label>Dirección:</label>
+                <input type="text" name="direc" value="{{ tercero[8] if tercero else '' }}">
+            </div>
+            
+            <div class="form-group">
+                <label>Tipo:</label>
+                <select name="tipo" required>
+                    <option value="C" {% if tercero and tercero[9] == 'C' %}selected{% endif %}>Cliente</option>
+                    <option value="P" {% if tercero and tercero[9] == 'P' %}selected{% endif %}>Proveedor</option>
+                    <option value="E" {% if tercero and tercero[9] == 'E' %}selected{% endif %}>Empleado</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Estado:</label>
+                <select name="estado" required>
+                    <option value="A" {% if tercero and tercero[10] == 'A' %}selected{% endif %}>Activo</option>
+                    <option value="I" {% if tercero and tercero[10] == 'I' %}selected{% endif %}>Inactivo</option>
+                </select>
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="btn primary">Guardar</button>
+                <a href="/" class="btn">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
